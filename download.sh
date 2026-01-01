@@ -37,7 +37,7 @@ TEXTPAGES=$((PAGES - 5))
 echo $TEXTPAGES
 for i in $(seq 1 $TEXTPAGES);
 do
-  ./dezoomify-rs "https://www.nb.no/services/image/resolver/${URN}_$(printf '%04d' "$i")/info.json" -l "page-$(printf '%04d' "$i").jpg"
+  dezoomify-rs "https://www.nb.no/services/image/resolver/${URN}_$(printf '%04d' "$i")/info.json" -l "page-$(printf '%04d' "$i").jpg"
   magick "page-$(printf '%04d' "$i").jpg" -resize 1072x1448 -colorspace gray -auto-level -level 10%,90% +dither -remap "palette-5.png" "page-$(printf '%04d' "$i")-compress.png"
   rm "page-$(printf '%04d' "$i").jpg"
 done
