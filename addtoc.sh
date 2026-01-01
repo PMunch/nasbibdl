@@ -33,6 +33,7 @@ do
 done
 
 if [ -n "$3" ]; then
+  # TODO: This should have a fourth parameter added which is offset of OCRed TOC to real-page TOC.
   PAGETOC=$(pdftotext -f "$3" -l "$3" -raw "$2" -)
   echo "$PAGETOC" | awk '{if (NF == 2 && $2 ~ /^[0-9]+$/) print ($2 + 2) " " (($1 ~ /^[[:upper:]]*$/)?"1":"2") " " $1}' >> bookmarks.txt
 fi
