@@ -39,3 +39,9 @@ som følger:
   ting som `addtoc.sh` og kjøres på samme måte (dog uten noe sidetall). Spytter
   også ut en ny PDF, denne gang med filendingen `.meta.pdf`.
 
+## Lovlighet
+Bøkene i Nasjonalbiblioteket er ikke for fri distribusjon. Denne behandlingen er
+kun ment for å kunne lese bøker du ellers ville kunne lest på nett på en mer
+behagelig måte på lesebrett. Vennligst respekter opphavsretten og eventuelt
+motta samtykke før videre deling av bøkene. Det er uvisst om bruk av disse
+programmene er lovlig. Deles uten noen form for garantier og uten forbehold.
