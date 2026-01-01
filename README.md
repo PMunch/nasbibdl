@@ -20,7 +20,11 @@ som følger:
     - [ocrmypdf](https://github.com/ocrmypdf/OCRmyPDF)
   For å kjøre programmet trenger du en URN fra Nasjonalbiblioteket. Den finner
   du under informasjonsfanen for en bok, ved navnet "Varig lenke" og har
-  formatet: `URN:NBN:no-nb_digibok_<tall>` for bøker på bokmål.
+  formatet: `URN:NBN:no-nb_digibok_<tall>` for bøker på bokmål. I tilleg kan man
+  gi en størrelse som vil bli brukt av ImageMagick for å få sidene til å passe
+  sitt lesebrett. Anbefalt er `<bredde>x` hvor `<bredde>` er den horisontale
+  oppløsningen på lesebrettet i piksler, e.g. `1072x`. Eventuelt det dobbelte
+  for bøker med to kolonner og lesebrett med modus for å lese slike bøker.
 - `addtoc.sh`: Dette lille programmet legger til en innholdsfortegnelse i
   bøkene. Den trenger i tillegg til noe av det `download.sh` belager seg på
   trenger det også:
@@ -29,10 +33,12 @@ som følger:
   For å kjøre programmet trenger du samme URN som til `download.sh`, samt navnet
   på PDF-en som ble laget. I tilleg kan du også gi et sidetall hvor
   innholdsfortegnelsen finnes. Om formatet er rett henter den ut OCR-resultatet
-  fra PDFen og bruker det til å legge til en større inholdsfortegnelse. Om et
-  sidetall ikke er gitt får man bare innholdsfortegnelsen fra
-  Nasjonalbiblioteket som ofte er ganske mangelfull. Spytter ut en PDF ved samme
-  navn som den ble gitt men nå med filendelsen `.toc.pdf`.
+  fra PDFen og bruker det til å legge til en større inholdsfortegnelse. Om man
+  gir et slikt sidetall kan man også gi et tall som justering for å passe på at
+  sidetallene passer. Om et sidetall ikke er gitt får man bare
+  innholdsfortegnelsen fra Nasjonalbiblioteket som ofte er ganske mangelfull.
+  Spytter ut en PDF ved samme navn som den ble gitt men nå med filendelsen
+  `.toc.pdf`.
 - `addmeta.sh`: Det siste lille programmer legger til metadata, mer bestemt
   forfatter, tittel, og nøkkelord til PDFen. Dette brukes av lesebrett til å
   vise bokens tittel, og å sortere og kategorisere den. Belager seg på de samme
