@@ -1,9 +1,13 @@
 #!/bin/bash
 if [ -z "$1" ] || [ -z "$2" ] || [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
-  echo "Usage: addtoc.sh <URN of book> <pdf to add TOC to> [<page number of TOC in book>]"
+  echo "Usage: addtoc.sh <URN of book> <pdf to add TOC to> [<page number of TOC in book> [<offset of book TOC>]]"
   echo ""
-  echo "Adds a table of contents to the Nasjonalbiblioteket-book created by the download script"
-  echo "If the metadata doesn't have the full TOC then an optional page number can be given with OCRed text giving the table of contents"
+  echo "Adds a table of contents to the Nasjonalbiblioteket-book created by the"
+  echo "download script. If the metadata doesn't have the full TOC then an"
+  echo "optional page number can be given with OCRed text giving the table of"
+  echo "contents. By default these page numbers are relative to the first"
+  echo "\"text\" page, which is the third page in the PDF. A fourth argument"
+  echo "be given to add or subtract a further offset from this to match the book"
   exit 1
 fi
 
@@ -33,9 +37,13 @@ do
 done
 
 if [ -n "$3" ]; then
-  # TODO: This should have a fourth parameter added which is offset of OCRed TOC to real-page TOC.
+  if [ -n "$4" ]; then
+    OFFSET=$((2 + $4))
+  else
+    OFFSET=2
+  fi
   PAGETOC=$(pdftotext -f "$3" -l "$3" -raw "$2" -)
-  echo "$PAGETOC" | awk '{if (NF == 2 && $2 ~ /^[0-9]+$/) print ($2 + 2) " " (($1 ~ /^[[:upper:]]*$/)?"1":"2") " " $1}' >> bookmarks.txt
+  echo "$PAGETOC" | awk '{if (NF == 2 && $2 ~ /^[0-9]+$/) print ($2 + '$OFFSET') " " (($1 ~ /^[[:upper:]]*$/)?"1":"2") " " $1}' >> bookmarks.txt
 fi
 
 BOOKMARKS=$(cat bookmarks.txt)
