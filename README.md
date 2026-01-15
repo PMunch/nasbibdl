@@ -18,6 +18,7 @@ som følger:
     - [curl](https://github.com/curl/curl)
     - [jq](https://github.com/jqlang/jq)
     - [ocrmypdf](https://github.com/ocrmypdf/OCRmyPDF)
+
   For å kjøre programmet trenger du en URN fra Nasjonalbiblioteket. Den finner
   du under informasjonsfanen for en bok, ved navnet "Varig lenke" og har
   formatet: `URN:NBN:no-nb_digibok_<tall>` for bøker på bokmål. I tilleg kan man
@@ -30,6 +31,7 @@ som følger:
   trenger det også:
    - [pdfftk](https://github.com/MeteorPackaging/pdftk)
    - [pdftotext](https://github.com/jalan/pdftotext)
+  
   For å kjøre programmet trenger du samme URN som til `download.sh`, samt navnet
   på PDF-en som ble laget. I tilleg kan du også gi et sidetall hvor
   innholdsfortegnelsen finnes. Om formatet er rett henter den ut OCR-resultatet
